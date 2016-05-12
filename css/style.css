@@ -1,0 +1,32 @@
+* {
+  outline: red 1px solid;
+}
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+body {
+  width: 80%;
+  margin: 0 auto;
+}
+.listNames {
+  float: left;
+  width: 20%;
+  height: 100%;
+}
+.listItems {
+  float: left;
+  width: 80%;
+}
+.title, .listItemsTitle {
+  text-align: center;
+}
+.listNames {
+
+}
