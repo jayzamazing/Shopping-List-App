@@ -12,7 +12,6 @@ html {
   box-sizing: inherit;
 }
 body {
-  width: 80%;
   margin: 0 auto;
 }
 .listNames {
@@ -29,4 +28,19 @@ body {
 }
 .listNames {
 
+}
+@media (min-width: 48rem){
+  .content {
+      width: 46rem;
+  }
+}
+@media (min-width: 62rem) {
+    .content {
+        width: 60rem;
+    }
+}
+@media (min-width: 75rem) {
+    .content {
+        width: 60%;
+    }
 }
