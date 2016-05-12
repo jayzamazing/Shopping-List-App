@@ -33,13 +33,24 @@ body {
   background-color: #dfbf9f;
   border-bottom-right-radius: 25px;
   border-top-left-radius: 25px;
+  border: 1px solid black;
+  opacity: 0.9;
+  filter: alpha(opacity=60);
 }
 .content ul {
   padding: 0;
+  color: #000000;
 }
 .content li {
   display: block;
   margin-bottom: 5px;
+}
+.content i {
+  border-radius: 1.25rem;
+  width: 1rem;
+  height: 1rem;
+  box-shadow: 0px 0px 3px #18191b;
+  padding-left: .1rem;
 }
 .listNames, .listItems {
   float: left;
@@ -60,6 +71,9 @@ input.listName {
 @media only screen and (max-width: 48rem) {
   section , aside {
     width: 100%;
+  }
+  aside > .content {
+    margin-bottom: 1rem;
   }
 }
 @media only screen and (min-width: 48rem) {
@@ -86,5 +100,4 @@ input.listName {
   section > .content {
     width: 40rem;
   }
-
 }
