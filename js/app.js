@@ -9,7 +9,7 @@ $(document).ready(function () {
   $('#listNameForm').click(function() {
     console.log($(this).next());
     $('.listNames ul').append('<li><input type="radio" name="listName" ' +
-    'checked="true" value="list1"><label for="">List ' + count + '</label><i class="fa ' +
+    'checked="true" value="list1"><label for=""> List ' + count + '</label><i class="fa ' +
     'fa-times delete" aria-hidden="true"></i></li>');
     count++;
   });
