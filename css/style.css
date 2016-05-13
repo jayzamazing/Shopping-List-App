@@ -74,10 +74,10 @@ input.listName {
   float: right;
 }
 @media only screen and (max-width: 48rem) {
-  section , aside {
+  section, aside {
     width: 100%;
   }
-  aside > .content {
+  aside .content {
     margin-bottom: 1rem;
   }
 }
@@ -86,11 +86,11 @@ input.listName {
     width: 45rem;
 
   }
-  aside > .content {
+  aside .content {
       width: 12rem;
       margin-right: 3rem;
   }
-  section > .content{
+  section .content {
     width: 30rem;
   }
 }
@@ -98,11 +98,11 @@ input.listName {
   body {
     width: 60rem;
   }
-  aside > .content {
+  aside .content {
     width: 15rem;
     margin-right: 5rem;
   }
-  section > .content {
+  section .content {
     width: 40rem;
   }
 }
