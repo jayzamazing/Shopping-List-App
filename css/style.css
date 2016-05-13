@@ -66,9 +66,6 @@ h1, h3 {
 form {
   text-align: center;
 }
-input.listName {
-  width: 5rem;
-}
 .fa-times {
   color: red;
   float: right;
@@ -84,7 +81,6 @@ input.listName {
 @media only screen and (min-width: 48rem) {
   body {
     width: 45rem;
-
   }
   aside .content {
       width: 12rem;
@@ -92,6 +88,9 @@ input.listName {
   }
   section .content {
     width: 30rem;
+  }
+  input.listName {
+    width: 5rem;
   }
 }
 @media only screen and (min-width: 75rem) {
@@ -104,5 +103,8 @@ input.listName {
   }
   section .content {
     width: 40rem;
+  }
+  input.listName {
+    width: 8rem;
   }
 }
