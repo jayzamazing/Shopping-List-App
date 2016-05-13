@@ -1,8 +1,7 @@
 $(document).ready(function () {
+  if (!storageStatus('localStorage'))
+    $('.storageErrorStatus')[0].style.visibility = 'visible';
   $(document).on('mousedown', '.delete', (function(){
-    console.log($(this).prevAll('input').prop('checked'));
-    console.log($(this).parent().prev().find('input').length);
-    console.log($(this).parent().next().find('input').length);
     if ($(this).prevAll('input').prop('checked') && $(this).prevAll('input').is(':radio') &
     $(this).parent().prev().find('input').length){
       $(this).parent().prev().find('input').prop('checked', true);
@@ -20,8 +19,19 @@ $(document).ready(function () {
   });
   $('#itemNameButton').click(function() {
     $('.listItems ul').append('<li><input type="checkbox" class="checkList">' +
-    '<label for="" class="checkListName"> ' + $(itemName).val() +'</label><i class="fa fa-times  ' +
+    '<label for="" class="checkListName"> ' + $('#itemName').val() +'</label><i class="fa fa-times  ' +
     'delete" aria-hidden="true"></i></li>');
-    $(itemName).val('');
+    $('#itemName').val('');
   });
 });
+function storageStatus(type) {
+	try {
+		var test = window[type], t1 = 'test';
+		test.setItem(t1, t1);
+		test.removeItem(t1);
+		return true;
+	}
+	catch(e) {
+		return false;
+	}
+}
