@@ -5,50 +5,66 @@ $(document).ready(function () {
   initialState();
   var shopLists = getLists();
   var listItems = getListsItems(shopLists[0]);
+  parseList(shopLists, addListName);
   parseList(listItems, addItem);
-
+  $('.listNames ul').find('input').first().prop('checked', true);
   $(document).on('mousedown', '.delete', (function(){
     deleteList.call(this);
   }));
+  $('.listNames ul').click(function() {
+    $('.listItems ul').empty();
+    var listItems = getListsItems($('.listNames ul').find("input:radio:checked").val());
+    parseList(listItems, addItem);
+  });
   $('#listNameButton').click(function() {
-    addListName($('#listName').val());
+    var name = $('#listName').val();
+    addListName(name);
     var shopLists = getLists();
     shopLists.push(name);
     setLists(shopLists);
+    $('.listItems ul').empty();
   });
   $('#itemNameButton').click(function() {
-    addItem($('#itemName').val());
+    var name = $('#itemName').val();
+    addItem(name);
     var listItems = getListsItems($('.listNames ul').find("input:radio:checked").val());
-    alert(listItems);
+    if (listItems === null)
+      listItems = [];
     listItems.push(name);
     setListItem($('.listNames ul').find("input:radio:checked").val(), listItems);
   });
 });
 function deleteList() {
-  if ($(this).prevAll('input').is(':radio'))
+  console.log($(this).prev().find('input').is(':radio'));
+  if ($(this).prev().find('input').is(':radio'))
     deleteListHelper1.call(this);
   else
     deleteListHelper2.call(this);
-  if ($(this).prevAll('input').prop('checked') && $(this).prevAll('input').is(':radio') &
-  $(this).parent().prev().find('input').length){
+  console.log($(this).prev().find('input').val());
+  if ($(this).prev().find('input').prop('checked') && $(this).prev().find('input').is(':radio') &&
+  $(this).parent().prev().find('input').length === 1){
     $(this).parent().prev().find('input').prop('checked', true);
-  } else if ($(this).prevAll('input').prop('checked') && $(this).prevAll('input').is(':radio') &
+  } else if ($(this).prev().find('input').prop('checked') && $(this).prev().find('input').is(':radio') &&
   $(this).parent().next().find('input').length) {
     $(this).parent().next().find('input').prop('checked', true);
   }
   $(this).parent().remove();
 }
-function deleteListHelper1() {//TODO
+function deleteListHelper1() {
   var shopLists = getLists();
   $('.listItems ul').empty();
-  shopLists.splice(shopLists.indexOf($(this).prevAll('label').text()), 1);
-  localStorage.removeItem($(this).prevAll('label').text());
+  shopLists.splice(shopLists.indexOf($(this).prev().find('input').val()), 1);
+  console.log($(this).prev().find('input').val());
+  localStorage.removeItem($(this).prev().find('input').val());
   setLists(shopLists);
+  if (localStorage.getItem('Shopping Lists').length === 2) {
+    localStorage.removeItem('Shopping Lists');
+  }
 }
-function deleteListHelper2() {//TODO
+function deleteListHelper2() {
   var listItems = getListsItems($('.listNames ul').find("input:radio:checked").val());
-  alert($('.listNames ul').find("input:radio:checked").val());
-  listItems.splice(listItems.indexOf($(this).parent().text()), 1);
+  console.log($(this).prev().find('input').val());
+  listItems.splice(listItems.indexOf($(this).prev().find('input').val()), 1);
   setListItem($('.listNames ul').find("input:radio:checked").val(), listItems);
 }
 function storageStatus(type) {
@@ -63,14 +79,14 @@ function storageStatus(type) {
 	}
 }
 function addItem(name) {
-  $('.listItems ul').append('<li><input type="checkbox" class="checkList">' +
-  '<label for="" class="checkListName"> ' + name +'</label><i class="fa fa-times  ' +
-  'delete" aria-hidden="true"></i></li>');
+  $('.listItems ul').append('<li><label for="" class="checkListName">' +
+  '<input type="checkbox" class="checkList" value="' + name + '"> ' + name +
+  '</label><i class="fa fa-times delete" aria-hidden="true"></i></li>');
   $('#itemName').val('');
 }
 function addListName(name) {
-  $('.listNames ul').append('<li><input type="radio" name="listName" ' +
-  'checked="true" value="list1"><label for=""> ' + name + '</label><i class="fa ' +
+  $('.listNames ul').append('<li><label for=""><input type="radio" name="listName" ' +
+  'value="' + name + '"checked="true"> ' + name + '</label><i class="fa ' +
   'fa-times delete" aria-hidden="true"></i></li>');
   $('#listName').val('');
 }

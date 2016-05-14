@@ -7,6 +7,7 @@ html, body {
   box-sizing: border-box;
   margin:0;
   padding:0;
+  color: #261a0d;
 }
 body {
   background-image: url('../img/shopping-center-iot.jpg');
@@ -44,7 +45,6 @@ h1, h3 {
 }
 .content ul {
   padding: 0;
-  color: #000000;
 }
 .content li {
   display: block;
@@ -109,6 +109,6 @@ form {
     width: 40rem;
   }
   input.listName {
-    width: 8rem;
+    width: 7rem;
   }
 }
