@@ -35,12 +35,10 @@ $(document).ready(function () {
   });
 });
 function deleteList() {
-  console.log($(this).prev().find('input').is(':radio'));
   if ($(this).prev().find('input').is(':radio'))
     deleteListHelper1.call(this);
   else
     deleteListHelper2.call(this);
-  console.log($(this).prev().find('input').val());
   if ($(this).prev().find('input').prop('checked') && $(this).prev().find('input').is(':radio') &&
   $(this).parent().prev().find('input').length === 1){
     $(this).parent().prev().find('input').prop('checked', true);
@@ -49,12 +47,14 @@ function deleteList() {
     $(this).parent().next().find('input').prop('checked', true);
   }
   $(this).parent().remove();
+  $('.listItems ul').empty();
+  var listItems = getListsItems($('.listNames ul').find("input:radio:checked").val());
+  parseList(listItems, addItem);
 }
 function deleteListHelper1() {
   var shopLists = getLists();
   $('.listItems ul').empty();
   shopLists.splice(shopLists.indexOf($(this).prev().find('input').val()), 1);
-  console.log($(this).prev().find('input').val());
   localStorage.removeItem($(this).prev().find('input').val());
   setLists(shopLists);
   if (localStorage.getItem('Shopping Lists').length === 2) {
@@ -63,7 +63,6 @@ function deleteListHelper1() {
 }
 function deleteListHelper2() {
   var listItems = getListsItems($('.listNames ul').find("input:radio:checked").val());
-  console.log($(this).prev().find('input').val());
   listItems.splice(listItems.indexOf($(this).prev().find('input').val()), 1);
   setListItem($('.listNames ul').find("input:radio:checked").val(), listItems);
 }
