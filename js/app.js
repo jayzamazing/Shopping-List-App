@@ -19,23 +19,33 @@ $(document).ready(function () {
   }));
   $('#listNameButton').click(function() {
     var name = $('#listName').val();
-    addListName(name);
-    var shopLists = getLists();
-    shopLists.push(name);
-    setLists('Shopping Lists', shopLists);
-    var emptyList = [''];
-    setLists(name.concat('.Checked'), emptyList);
-    $('.listItems ul').empty();
+    if (name === '') {
+      $('#listName').addClass('error');
+    } else {
+      $('#listName').removeClass('error');
+      addListName(name);
+      var shopLists = getLists();
+      shopLists.push(name);
+      setLists('Shopping Lists', shopLists);
+      var emptyList = [''];
+      setLists(name.concat('.Checked'), emptyList);
+      $('.listItems ul').empty();
+    }
   });
   $('#itemNameButton').click(function() {
     var name = $('#itemName').val();
-    addItem(name);
-    var listItems = getListsItems($('.listNames ul').find("input:radio:checked").val());
-    if (listItems === null || listItems[0] === '')
-      listItems = [name];
-    else
-      listItems.push(name);
-    setListItem($('.listNames ul').find("input:radio:checked").val(), listItems);
+    if (name === '') {
+      $('#itemName').addClass('error');
+    } else {
+      $('#itemName').removeClass('error');
+      addItem(name);
+      var listItems = getListsItems($('.listNames ul').find("input:radio:checked").val());
+      if (listItems === null || listItems[0] === '')
+        listItems = [name];
+      else
+        listItems.push(name);
+      setListItem($('.listNames ul').find("input:radio:checked").val(), listItems);
+    }
   });
   $('.listNames ul').click(function() {
     $('.listItems ul').empty();

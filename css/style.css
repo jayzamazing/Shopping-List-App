@@ -60,6 +60,9 @@ h1, h3 {
 .listNames, .listItems {
   float: left;
 }
+.listNames .error, .listItems .error {
+  border-color: red;
+}
 .title, .listItemsTitle {
   text-align: center;
 }
