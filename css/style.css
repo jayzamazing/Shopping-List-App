@@ -24,7 +24,10 @@ body {
   background-repeat: no-repeat;
 }
 h1, h3 {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Bangers', cursive;
+}
+h1 {
+  font-size: 64px;
 }
 *, *:before, *:after {
   -webkit-box-sizing: inherit;
@@ -89,6 +92,9 @@ form {
   }
   aside .content {
     margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 32px;
   }
 }
 @media only screen and (min-width: 48rem) {
