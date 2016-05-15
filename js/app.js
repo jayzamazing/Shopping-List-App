@@ -17,7 +17,7 @@ $(document).ready(function () {
   $(document).on('mousedown', '.delete', (function(){
     deleteList.call(this);
   }));
-  $('#listNameButton').click(function() {
+  $('#listNameForm').submit(function(e) {
     var name = $('#listName').val();
     if (name === '') {
       $('#listName').addClass('error');
@@ -31,8 +31,9 @@ $(document).ready(function () {
       setLists(name.concat('.Checked'), emptyList);
       $('.listItems ul').empty();
     }
+    e.preventDefault();
   });
-  $('#itemNameButton').click(function() {
+  $('#itemNameForm').submit(function(e) {
     var name = $('#itemName').val();
     if (name === '') {
       $('#itemName').addClass('error');
@@ -46,6 +47,7 @@ $(document).ready(function () {
         listItems.push(name);
       setListItem($('.listNames ul').find("input:radio:checked").val(), listItems);
     }
+    e.preventDefault();
   });
   $('.listNames ul').click(function() {
     $('.listItems ul').empty();
