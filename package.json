@@ -4,14 +4,14 @@
   "description": "This is a shopping list app that allows for the creation of various lists with their own items. It uses Html, Css, Jquery, Javascript, and LocalStorage.",
   "main": "js/index.js",
   "dependencies": {
-    "jquery": "^3.0.0",
-    "normalize.css": "^4.1.1"
+    "jquery": "3.0.0",
+    "normalize.css": "4.1.1"
   },
   "devDependencies": {
-    "chokidar": "^1.6.0",
-    "less": "^2.7.1",
-    "less-plugin-clean-css": "^1.5.1",
-    "webpack": "^1.13.1"
+    "chokidar": "1.6.0",
+    "less": "2.7.1",
+    "less-plugin-clean-css": "1.5.1",
+    "webpack": "1.13.1"
   },
   "scripts": {
     "mkdir": "mkdir -p build",
@@ -43,7 +43,12 @@
     "Css",
     "Jquery",
     "Javascript",
-    "LocalStorage"
+    "LocalStorage",
+    "Normalize",
+    "Chokidar",
+    "Less",
+    "Clean CSS",
+    "Webpack"
   ],
   "author": "Adrian J Lopez <adrianjaylopez@gmail.com>",
   "license": "MIT",

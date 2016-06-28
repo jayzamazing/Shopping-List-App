@@ -6,8 +6,6 @@
 @lighter-brown: lighten(@light-brown, 15%);
 /* set box-sizing, margin, padding, and color for html and body */
 html, body {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   margin:0;
   padding:0;
@@ -16,21 +14,18 @@ html, body {
 /* set background image for the body */
 body {
   background-image: url('../img/shopping-center-iot.jpg');
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
   background-size: cover;
   height: 45.938rem;
   background-position: center bottom;
   overflow: auto;
   padding:0;
   margin: auto;
-  font-family: 'Architects Daughter', cursive;
+  font-family: 'Architects Daughter', 'sans-serif';
   background-repeat: no-repeat;
 }
 /* add fornt to h1 and h3 */
 h1, h3 {
-  font-family: 'Bangers', cursive;
+  font-family: 'Bangers', 'sans-serif';
 }
 /* set font size for h1 */
 h1 {
@@ -82,7 +77,7 @@ h1 {
   }
 }
 /* align text center for title, listitemstitle, and form */
-.title, .listItemsTitle, form {
+.center-text {
   text-align: center;
 }
 /*set font awesome icon to red and float right */
@@ -104,7 +99,7 @@ h1 {
   display: none !important;
 }
 /* do the following if using screen with max of 48rem */
-@media only screen and (max-width: 48rem) {
+@media only screen and (max-width: 48em) {
   /* set width for section and aside */
   section, aside {
     width: 100%;
@@ -119,7 +114,7 @@ h1 {
   }
 }
 /* do the following if using screen with width of 48rem */
-@media only screen and (min-width: 48rem) {
+@media only screen and (min-width: 48em) {
   /* set body width */
   body {
     width: 45rem;
@@ -139,7 +134,7 @@ h1 {
   }
 }
 /* do the following if using screen with width of 75rem */
-@media only screen and (min-width: 75rem) {
+@media only screen and (min-width: 75em) {
   /* set body width */
   body {
     width: 60rem;
