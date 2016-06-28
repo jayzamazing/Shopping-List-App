@@ -78,9 +78,9 @@ $(document).ready(function() {
             //get all listitems
             var listItems = getListsItems($('.listNames ul').find("input:radio:checked").val());
             //if listitems is invalid then listitems becomes name
-            if (listItems[0]) {
+            if (!listItems) {
                 listItems = [name];
-                //otherwise
+            //otherwise
             } else {
                 //add item
                 listItems.push(name);
@@ -98,7 +98,7 @@ $(document).ready(function() {
         //get all list items under a line name
         var listItems = getListsItems($('.listNames ul').find("input:checked").val());
         //as long as listitems is valid
-        if (!listItems[0]) {
+        if (listItems) {
             //show list
             parseList(listItems, addItem);
             var listItems2 = getListsItems($('.listNames ul').find("input:checked").val().concat('.Checked'));
