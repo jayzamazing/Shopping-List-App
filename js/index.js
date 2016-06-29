@@ -1,5 +1,6 @@
 var $ = require('jquery');
-$(document).ready(function() {
+$('document').ready(function(event) {
+    'use strict';
     //show error if localstorage is not available
     if (!storageStatus('localStorage')) {
         $('.storageErrorStatus')[0].style.visibility = 'visible';
@@ -11,8 +12,8 @@ $(document).ready(function() {
     var listItems = getListsItems(shopLists[0]);
     var checked = getListsItems(shopLists[0].concat('.Checked'));
     //show list name and list items
-    parseList(shopLists, addListName);
-    parseList(listItems, addItem);
+    parseList(shopLists, addListName, event);
+    parseList(listItems, addItem, event);
     parseChecked(checked);
     //remove highlight of all items
     $('.listNames li').each(function() {
@@ -22,10 +23,16 @@ $(document).ready(function() {
     $('.listNames ul').find('input').first().prop('checked', true);
     $('.listNames ul').find('li').first().toggleClass('highlight', this.checked);
     /*
+     * Function to delete a list name when clicking on X
+     */
+    $('.listNames').on('mousedown', '.delete', function(event) {
+        deleteList(event);
+    });
+    /*
      * Function to delete a list item when clicking on X
      */
-    $(document).on('mousedown', '.delete', function() {
-        deleteList.call(this);
+    $('.listItems').on('mousedown', '.delete', function(event) {
+        deleteList(event);
     });
     /*
      * Function to deal with adding a list name
@@ -44,7 +51,7 @@ $(document).ready(function() {
             //remove error if it was shown previously
             $('#listName').removeClass('error');
             //add list to display
-            addListName(name);
+            addListName(name, event);
             //get list from local storage and add item to list
             var shopLists = getLists();
             shopLists.push(name);
@@ -80,7 +87,7 @@ $(document).ready(function() {
             //if listitems is invalid then listitems becomes name
             if (!listItems) {
                 listItems = [name];
-            //otherwise
+                //otherwise
             } else {
                 //add item
                 listItems.push(name);
@@ -92,7 +99,7 @@ $(document).ready(function() {
     /*
      * Function that deals with showing list items based on list name
      */
-    $('.listNames ul').click(function() {
+    $('.listNames ul').click(function(event) {
         //empty list items
         $('.listItems ul').empty();
         //get all list items under a line name
@@ -100,7 +107,7 @@ $(document).ready(function() {
         //as long as listitems is valid
         if (listItems) {
             //show list
-            parseList(listItems, addItem);
+            parseList(listItems, addItem, event);
             var listItems2 = getListsItems($('.listNames ul').find("input:checked").val().concat('.Checked'));
             //add highlighting to list items
             parseChecked(listItems2);
@@ -147,41 +154,51 @@ $(document).ready(function() {
     /*
      * Function to delete list
      */
-    function deleteList() {
+    function deleteList(event) {
         //if the following is a list or list item
-        if ($(this).find('input').is(':radio')) {
-            //iterate through each
-            $(this).parent().each(function() {
-                //remove highlighting for each
-                $(this).toggleClass('highlight', false);
-            });
-        }
-        //if the following is a list or list item
-        if ($(this).prev().find('input').is(':radio')) {
+        if ($(event.target).prev().find('input').is(':radio')) {
             //delete list
-            deleteListHelper1.call(this);
+            deleteListHelper1(event);
         } else {
             //delete list item
-            deleteListHelper2.call(this);
+            deleteListHelper2(event);
         }
+        // if element is list name, checked, and there is a previous list name, not first element in list
+        if ($(event.target).prev().find('input').prop('checked') && $(event.target).prev().find('input').is(':radio') &&
+            $(event.target).parent().prev().find('input').length) {
+            //set previous to be checked and highlighted
+            $(event.target).parent().prev().find('input').prop('checked', true);
+            $(event.target).parent().prev().toggleClass('highlight', event.target.checked);
+            //otherwise if list name, checked, and there is a next list, first element in list
+        } else if ($(event.target).prev().find('input').prop('checked') && $(event.target).prev().find('input').is(':radio') &&
+            $(event.target).parent().next().find('input').length) {
+            //set previous to be checked and highlighted
+            $(event.target).parent().next().find('input').prop('checked', true);
+            $(event.target).parent().next().toggleClass('highlight', event.target.checked);
+        }
+        $(event.target).parent().remove();
         //delete the list items
         $('.listItems ul').empty();
         var listItems = getListsItems($('.listNames ul').find("input:radio:checked").val());
         var checked = getListsItems($('.listNames ul').find("input:radio:checked").val().concat('.Checked'));
         //show list items and highlight checked
-        parseList(listItems, addItem);
+        parseList(listItems, addItem, event);
         parseChecked(checked);
     }
     /*
      * Function to delete list from shopping list
      */
-    function deleteListHelper1() {
+    function deleteListHelper1(event) {
         //get the list
         var shopLists = getLists();
         //clear list items
         $('.listItems ul').empty();
+        //delete list from local storage
+        localStorage.removeItem($(event.target).prev().find('input').val());
+        //delete checked from local storage
+        localStorage.removeItem($(event.target).prev().find('input').val().concat('.Checked'));
         //remove selected list
-        shopLists.splice(shopLists.indexOf($(this).prev().find('input').val()), 1);
+        shopLists.splice(shopLists.indexOf($(event.target).prev().find('input').val()), 1);
         //remove list from local storage
         //localStorage.removeItem($(this).prev().find('input').val());TODO redo based on this
         setLists('Shopping Lists', shopLists);
@@ -195,22 +212,22 @@ $(document).ready(function() {
             shopLists = getLists();
             var listItems = getListsItems(shopLists[0]);
             //display list and list items
-            parseList(shopLists, addListName);
-            parseList(listItems, addItem);
+            parseList(shopLists, addListName, event);
+            parseList(listItems, addItem, event);
         }
     }
     /*
      * Function to delete item from a list
      */
-    function deleteListHelper2() {
+    function deleteListHelper2(event) {
         //get list items and what is checked
         var listItems = getListsItems($('.listNames ul').find("input:radio:checked").val());
         var checked = getListsItems($('.listNames ul').find("input:radio:checked").val().concat('.Checked'));
         //remove item from checked list and then remove it from local storage
-        checked.splice(listItems.indexOf($(this).parent().find('input').val()), 1);
+        checked.splice(listItems.indexOf($(event.target).parent().find('input').val()), 1);
         localStorage.removeItem($('.listNames ul').find("input:radio:checked").val().concat('.Checked'));
         //remove item from list and remove from local storage
-        listItems.splice(listItems.indexOf($(this).prev().find('input').val()), 1);
+        listItems.splice(listItems.indexOf($(event.target).prev().find('input').val()), 1);
         setListItem($('.listNames ul').find("input:radio:checked").val(), listItems);
         setLists($('.listNames ul').find("input:radio:checked").val().concat('.Checked'), checked);
     }
@@ -247,7 +264,7 @@ $(document).ready(function() {
      * Function to add a list name to the shopping list section
      * @param name - list name
      */
-    function addListName(name) {
+    function addListName(name, event) {
         //iterate through each element
         $('li').each(function() {
             //remove highlight from all elements
@@ -255,8 +272,8 @@ $(document).ready(function() {
         });
         //add list name
         $('.listNames ul').append('<li><label for=""><input type="radio" name="listName" ' +
-            'value="' + name + '"checked="true" class="hidden"> ' + name + '</label><i class="fa ' +
-            'fa-times delete" aria-hidden="true"></i></li>').find('li:last').addClass('highlight', this.checked);
+            'value="' + name + '" checked class="hidden"> ' + name + '</label><i class="fa ' +
+            'fa-times delete" aria-hidden="true"></i></li>').find('li:last').addClass('highlight', event.checked);
         //empty the following field
         $('#listName').val('');
     }
@@ -269,15 +286,13 @@ $(document).ready(function() {
             //create shopping list and add default list to local storage
             var value = ['List 1'];
             localStorage.setItem('Shopping Lists', JSON.stringify(value));
-            //if List 1 is empty
-            if (localStorage.getItem("List 1") === null) {
-                //add default values and set all values as unchecked
-                value = ['Milk', 'Pepper', 'Salt', 'Eggs', 'Dish Detergent'];
-                var value2 = ['', '', '', '', ''];
-                //add default list and checked values to local storage
-                localStorage.setItem('List 1', JSON.stringify(value));
-                localStorage.setItem('List 1.Checked', JSON.stringify(value2));
-            }
+            //add default values and set all values as unchecked
+            value = ['Milk', 'Pepper', 'Salt', 'Eggs', 'Dish Detergent'];
+            var value2 = ['', '', '', '', ''];
+            //add default list and checked values to local storage
+            localStorage.setItem('List 1', JSON.stringify(value));
+            localStorage.setItem('List 1.Checked', JSON.stringify(value2));
+
         }
     }
     /*
@@ -316,11 +331,11 @@ $(document).ready(function() {
      * @param list - list to perform function callback
      * @callBack - function to perform on list
      */
-    function parseList(list, callback) {
+    function parseList(list, callback, event) {
         //iterate over list
         for (var x in list) {
             //perform function over list item
-            callback(list[x]);
+            callback(list[x], event);
         }
     }
     /*
@@ -331,7 +346,7 @@ $(document).ready(function() {
         //ensure list is valid
         if (list) {
             //iterate through list
-            for (i = 0; i < list.length; i++) {
+            for (var i = 0; i < list.length; i++) {
                 //if item is checked
                 if (list[i] === 'checked') {
                     //get the list item and input
