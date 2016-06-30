@@ -46,6 +46,7 @@
 
 	'use strict';
 	
+	/*jshint esversion: 6 */
 	var $ = __webpack_require__(1);
 	$('document').ready(function (event) {
 	    'use strict';
@@ -375,10 +376,10 @@
 	     */
 	    function parseList(list, callback, event) {
 	        //iterate over list
-	        for (var x in list) {
+	        list.forEach(function (item) {
 	            //perform function over list item
-	            callback(list[x], event);
-	        }
+	            callback(item, event);
+	        });
 	    }
 	    /*
 	     * Function that takes a list and adds highlight and checked if the item is checked
@@ -388,9 +389,19 @@
 	        //ensure list is valid
 	        if (list) {
 	            //iterate through list
-	            for (var i = 0; i < list.length; i++) {
-	                //if item is checked
-	                if (list[i] === 'checked') {
+	            // for (var i = 0; i < list.length; i++) {
+	            //     //if item is checked
+	            //     if (list[i] === 'checked') {
+	            //         //get the list item and input
+	            //         var listObj = $('.listItems li')[i];
+	            //         var listObj2 = $('.listItems li input')[i];
+	            //         //add hightlight to list item and checked to input field
+	            //         listObj.className += ' highlight';
+	            //         listObj2.checked = true;
+	            //     }
+	            // }
+	            list.forEach(function (item, i) {
+	                if (item === 'checked') {
 	                    //get the list item and input
 	                    var listObj = $('.listItems li')[i];
 	                    var listObj2 = $('.listItems li input')[i];
@@ -398,7 +409,7 @@
 	                    listObj.className += ' highlight';
 	                    listObj2.checked = true;
 	                }
-	            }
+	            });
 	        }
 	    }
 	});
