@@ -1,6 +1,6 @@
 {
   "name": "shopping-list-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is a shopping list app that allows for the creation of various lists with their own items. It uses Html, Css, Jquery, Javascript, and LocalStorage.",
   "main": "js/index.js",
   "dependencies": {
@@ -8,8 +8,8 @@
     "normalize.css": "4.1.1"
   },
   "devDependencies": {
-    "babel-core": "^6.10.4",
-    "babel-loader": "^6.2.4",
+    "babel-core": "6.10.4",
+    "babel-loader": "6.2.4",
     "babel-preset-es2015": "^6.9.0",
     "chokidar": "1.6.0",
     "less": "2.7.1",

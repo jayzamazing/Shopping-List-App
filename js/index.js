@@ -12,10 +12,11 @@ $('document').ready(function(event) {
     var shopLists = getLists();
     var listItems = getListsItems(shopLists[0]);
     var checked = getListsItems(shopLists[0].concat('.Checked'));
-    //show list name and list items
-    parseList(shopLists, addListName, event);
-    parseList(listItems, addItem, event);
-    parseChecked(checked);
+    //show list name, list items, and checked
+    promiseLogging(parseList(shopLists, addListName, event))
+        .then(promiseLogging(parseList(listItems, addItem, event)))
+        .then(promiseLogging(parseChecked(checked)));
+
     //remove highlight of all items
     $('.listNames li').each(function() {
         $(this).removeClass('highlight');
@@ -108,10 +109,10 @@ $('document').ready(function(event) {
         //as long as listitems is valid
         if (listItems) {
             //show list
-            parseList(listItems, addItem, event);
+            promiseLogging(parseList(listItems, addItem, event));
             var listItems2 = getListsItems($('.listNames ul').find("input:checked").val().concat('.Checked'));
             //add highlighting to list items
-            parseChecked(listItems2);
+            promiseLogging(parseChecked(listItems2));
         }
     });
     /*
@@ -183,8 +184,8 @@ $('document').ready(function(event) {
         var listItems = getListsItems($('.listNames ul').find("input:radio:checked").val());
         var checked = getListsItems($('.listNames ul').find("input:radio:checked").val().concat('.Checked'));
         //show list items and highlight checked
-        parseList(listItems, addItem, event);
-        parseChecked(checked);
+        promiseLogging(parseList(listItems, addItem, event));
+        promiseLogging(parseChecked(checked));
     }
     /*
      * Function to delete list from shopping list
@@ -213,8 +214,8 @@ $('document').ready(function(event) {
             shopLists = getLists();
             var listItems = getListsItems(shopLists[0]);
             //display list and list items
-            parseList(shopLists, addListName, event);
-            parseList(listItems, addItem, event);
+            promiseLogging(parseList(shopLists, addListName, event));
+            promiseLogging(parseList(listItems, addItem, event));
         }
     }
     /*
@@ -333,10 +334,20 @@ $('document').ready(function(event) {
      * @callBack - function to perform on list
      */
     function parseList(list, callback, event) {
-        //iterate over list
-        list.forEach(item => {
-          //perform function over list item
-          callback(item, event);
+        //return promise so this can be used in a promise chain
+        return new Promise(function(resolve, reject) {
+            if (list) {
+                //iterate over list
+                list.forEach(item => {
+                    //perform function over list item
+                    callback(item, event);
+                });
+                //send fullfil message
+                resolve('Parsed list using ' + callback.name);
+            } else {
+                //exit with error
+                reject('Failed to parse list using ' + callback.name);
+            }
         });
     }
     /*
@@ -344,20 +355,51 @@ $('document').ready(function(event) {
      * @param list - list to iterate over
      */
     function parseChecked(list) {
-        //ensure list is valid
-        if (list) {
-            //iterate through list
-            list.forEach((item, i) => {
-              //if item is checked
-              if (item === 'checked') {
-                      //get the list item and input
-                      var listObj = $('.listItems li')[i];
-                      var listObj2 = $('.listItems li input')[i];
-                      //add hightlight to list item and checked to input field
-                      listObj.className += ' highlight';
-                      listObj2.checked = true;
+        //return promise so this can be used in a promise chain
+        return new Promise(function(resolve, reject) {
+            //ensure list is valid
+            if (list) {
+                //iterate through list
+                list.forEach((item, i) => {
+                    //if item is checked
+                    if (item === 'checked') {
+                        //get the list item and input
+                        var listObj = $('.listItems li')[i];
+                        var listObj2 = $('.listItems li input')[i];
+                        //add hightlight to list item and checked to input field
+                        listObj.className += ' highlight';
+                        listObj2.checked = true;
                     }
-            });
-        }
+                });
+                //send fullfil message
+                resolve('complete parsing checked list');
+            } else {
+                //exit with error
+                reject('could not parse checked list');
+            }
+
+        });
+    }
+    /*
+     * Helper function to deal with result and error logging
+     */
+    function promiseLogging(callback) {
+        //return promise so this can be used in a promise chain
+        return new Promise(function(resolve, reject) {
+            //function to do the following on
+            callback
+            //after performing method, log results
+                .then(function(result) {
+                    console.log(result);
+                })
+                //if there are any errors, log them here
+                .catch(function(error) {
+                    console.log(error);
+                    //exit with error
+                    reject('Stopped working');
+                });
+            //send fullfil message
+            resolve('Working so far');
+        });
     }
 });
