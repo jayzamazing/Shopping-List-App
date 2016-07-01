@@ -1,6 +1,6 @@
 {
   "name": "shopping-list-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This is a shopping list app that allows for the creation of various lists with their own items. It uses Html, Css, Jquery, Javascript, and LocalStorage.",
   "main": "js/index.js",
   "dependencies": {
@@ -14,6 +14,7 @@
     "chokidar": "1.6.0",
     "less": "2.7.1",
     "less-plugin-clean-css": "1.5.1",
+    "uglify-js": "2.6.4",
     "webpack": "1.13.1"
   },
   "scripts": {
@@ -21,7 +22,7 @@
     "build": "npm run clean && npm run mkdir && npm run build:html && npm run build:css && npm run build:js",
     "watch": "npm run watch:html & npm run watch:css & npm run watch:js",
     "clean": "rm -rf build",
-    "build:html": "npm run clean:html && cp index.html build/ && cp img/* build/",
+    "build:html": "npm run clean:html && cp index.html build/ && cp img/* build/ && cp favicon.ico build/",
     "watch:html": "npm run build:html && chokidar index.html -c 'npm run build:html'",
     "clean:html": "rm -f build/index.html",
     "build:css": "npm run build:css:unminified && npm run build:css:minified",
@@ -33,9 +34,15 @@
     "build:css:minified": "npm run clean:css:minified && lessc --clean-css --source-map css/index.less build/$npm_package_name.$npm_package_version.min.css",
     "watch:css:minified": "npm run build:css:minified && chokidar 'css/**/*.(css|less)' -c 'npm run build:css:minified'",
     "clean:css:minified": "rm -f build/$npm_package_name.$npm_package_version.min.css build/$npm_package_name.$npm_package_version.min.css.map",
-    "build:js": "npm run clean:js && webpack",
-    "watch:js": "npm run build:js && webpack --watch",
-    "clean:js": "rm -f build/$npm_package_name.$npm_package_version.js build/$npm_package_name.$npm_package_version.js.map",
+    "build:js": "npm run build:js:unminified && npm run build:js:minified",
+    "watch:js": "npm run watch:js:unminified & npm run watch:js:minified",
+    "clean:js": "npm run clean:js:unminified && npm run clean:js:minified",
+    "build:js:unminified": "npm run clean:js:unminified && webpack",
+    "watch:js:unminified": "npm run build:js:unminified && webpack --watch",
+    "clean:js:unminified": "rm -f build/$npm_package_name.$npm_package_version.js build/$npm_package_name.$npm_package_version.js.map",
+    "build:js:minified": "npm run clean:js:minified && webpack --minify",
+    "watch:js:minified": "npm run build:js:minified && webpack --watch --minify",
+    "clean:js:minified": "rm -f build/$npm_package_name.$npm_package_version.min.js build/$npm_package_name.$npm_package_version.min.js.map",
     "deploy:gh-pages": "git push origin `git subtree split --prefix build master`:gh-pages --force"
   },
   "repository": {
