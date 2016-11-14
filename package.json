@@ -1,6 +1,6 @@
 {
   "name": "shopping-list-app",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "This is a shopping list app that allows for the creation of various lists with their own items. It uses Html, Css, Jquery, Javascript, and LocalStorage.",
   "main": "public/js/index.js",
   "dependencies": {

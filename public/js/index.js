@@ -27,13 +27,13 @@ $('document').ready(function(event) {
     /*
      * Function to delete a list name when clicking on X
      */
-    $('.listNames').on('mousedown', '.delete', function(event) {
+    $('.listNames .delete').mousedown(function(event) {
         deleteList(event);
     });
     /*
      * Function to delete a list item when clicking on X
      */
-    $('.listItems').on('mousedown', '.delete', function(event) {
+    $('.listItems .delete').mousedown(function(event) {
         deleteList(event);
     });
     /*
