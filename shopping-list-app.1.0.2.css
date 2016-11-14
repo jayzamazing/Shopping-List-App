@@ -1,15 +1,11 @@
 /* colors used throughout the page */
-@dark-brown: hsl(31, 49%, 10%);
-@light-brown: lighten(@dark-brown, 50%);
-@near-black: hsl(220, 6%, 10%);
-@red: hsl(0, 100%, 50%);
-@lighter-brown: lighten(@light-brown, 15%);
 /* set box-sizing, margin, padding, and color for html and body */
-html, body {
+html,
+body {
   box-sizing: border-box;
-  margin:0;
-  padding:0;
-  color: @dark-brown;
+  margin: 0;
+  padding: 0;
+  color: #261a0d;
 }
 /* set background image for the body */
 body {
@@ -18,13 +14,14 @@ body {
   height: 45.938rem;
   background-position: center bottom;
   overflow: auto;
-  padding:0;
+  padding: 0;
   margin: auto;
   font-family: 'Architects Daughter', 'sans-serif';
   background-repeat: no-repeat;
 }
 /* add fornt to h1 and h3 */
-h1, h3 {
+h1,
+h3 {
   font-family: 'Bangers', 'sans-serif';
 }
 /* set font size for h1 */
@@ -32,14 +29,16 @@ h1 {
   font-size: 64px;
 }
 /* reset components */
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   -webkit-box-sizing: inherit;
   -moz-box-sizing: inherit;
   box-sizing: inherit;
 }
 /* set color, radius, border and opacity of class */
 .content-background {
-  background-color: @lighter-brown;
+  background-color: #dec0a0;
   border-bottom-right-radius: 25px;
   border-top-left-radius: 25px;
   border: 1px solid black;
@@ -51,30 +50,32 @@ h1 {
   margin: 0 auto;
   padding: 1rem;
   /* set padding for content ul */
-  ul {
-    padding: 0;
-  }
   /* set margin and display for content li */
-  li {
-    display: block;
-    margin-bottom: 5px;
-  }
   /* set border, width, height, shadow, and padding for content i */
-  i {
-    border-radius: 1.25rem;
-    width: 1rem;
-    height: 1rem;
-    box-shadow: 0px 0px 3px @near-black;
-    padding-left: .1rem;
-  }
+}
+.content ul {
+  padding: 0;
+}
+.content li {
+  display: block;
+  margin-bottom: 5px;
+}
+.content i {
+  border-radius: 1.25rem;
+  width: 1rem;
+  height: 1rem;
+  box-shadow: 0px 0px 3px #18191b;
+  padding-left: .1rem;
 }
 /* set float for listnames and listitems */
-.listNames, .listItems {
+.listNames,
+.listItems {
   float: left;
   /* set border color for listnames and listitems error */
-  .error {
-    border-color: @red;
-  }
+}
+.listNames .error,
+.listItems .error {
+  border-color: #ff0000;
 }
 /* align text center for title, listitemstitle, and form */
 .center-text {
@@ -82,17 +83,17 @@ h1 {
 }
 /*set font awesome icon to red and float right */
 .fa-times {
-  color: @red;
+  color: #ff0000;
   float: right;
 }
 /* highlight selected field */
 .highlight {
-  background-color: @light-brown;
+  background-color: #cb9b67;
 }
 /* hide element taking up space and set text to red */
 .storageErrorStatus {
   visibility: hidden;
-  color: @red;
+  color: #ff0000;
 }
 /* hide element without taking space */
 .hidden {
@@ -101,7 +102,8 @@ h1 {
 /* do the following if using screen with max of 48rem */
 @media only screen and (max-width: 48em) {
   /* set width for section and aside */
-  section, aside {
+  section,
+  aside {
     width: 100%;
   }
   /* set bottom margin for aside content */
@@ -121,8 +123,8 @@ h1 {
   }
   /* set aside content width and margin */
   aside .content {
-      width: 12rem;
-      margin-right: 3rem;
+    width: 12rem;
+    margin-right: 3rem;
   }
   /* set section content width */
   section .content {
@@ -153,3 +155,4 @@ h1 {
     width: 7rem;
   }
 }
+/*# sourceMappingURL=shopping-list-app.1.0.2.css.map */
