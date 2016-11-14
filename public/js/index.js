@@ -44,7 +44,7 @@ $('document').ready(function(event) {
         //prevent page default
         event.preventDefault();
         //get the list name from the input
-        var name = $('#listName').val();
+        var name = $('#listName').val().trim();
         //show error if input field is empty
         if (name === '') {
             $('#listName').addClass('error');
@@ -74,7 +74,7 @@ $('document').ready(function(event) {
         //prevent page reload
         event.preventDefault();
         //get the value from the input field
-        var name = $('#itemName').val();
+        var name = $('#itemName').val().trim();
         //show error if input field is empty
         if (name === '') {
             $('#itemName').addClass('error');
