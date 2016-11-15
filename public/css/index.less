@@ -4,28 +4,47 @@
 @near-black: hsl(220, 6%, 10%);
 @red: hsl(0, 100%, 50%);
 @lighter-brown: lighten(@light-brown, 15%);
+
+// @red: #F44336;
+@deepred: #A71E14;
+@lightred: #FF5E52;
+@yellow: #E2F64F;
+@lightblue: #176BC1;
+@darkblue: #1D61A7;
+// @green: #04A748;
+// @lightgreen: #36F485;
+
+@red: #F44336;
+@orange: #C15417;
+@brown: #8E6C58;
+@lightgreen: #74F585;
+@green: #37C117;
+
 /* set box-sizing, margin, padding, and color for html and body */
 html, body {
   box-sizing: border-box;
   margin:0;
   padding:0;
-  color: @dark-brown;
 }
 /* set background image for the body */
 body {
-  background-image: url('shopping-center-iot.jpg');
-  background-size: cover;
-  height: 45.938rem;
-  background-position: center bottom;
+  background-color: white;
+  // background-image: url('shopping-center-iot.jpg');
+  // background-size: cover;
+  // height: 45.938rem;
+  // background-position: center bottom;
   overflow: auto;
   padding:0;
   margin: auto;
   font-family: 'Architects Daughter', 'sans-serif';
-  background-repeat: no-repeat;
+  // background-repeat: no-repeat;
 }
 /* add fornt to h1 and h3 */
 h1, h3 {
   font-family: 'Bangers', 'sans-serif';
+}
+h1 {
+  color: @red;
 }
 /* set font size for h1 */
 h1 {
@@ -39,11 +58,11 @@ h1 {
 }
 /* set color, radius, border and opacity of class */
 .content-background {
-  background-color: @lighter-brown;
+  background-color: @green;
   border-bottom-right-radius: 25px;
   border-top-left-radius: 25px;
   border: 1px solid black;
-  opacity: 0.9;
+  // opacity: 0.9;
   filter: alpha(opacity=60);
 }
 /* set margin and padding for content */
@@ -80,6 +99,9 @@ h1 {
 .center-text {
   text-align: center;
 }
+.center-div {
+  margin: 0 auto;
+}
 /*set font awesome icon to red and float right */
 .fa-times {
   color: @red;
@@ -100,6 +122,9 @@ h1 {
 }
 /* do the following if using screen with max of 48rem */
 @media only screen and (max-width: 48em) {
+  .center-div {
+    width: 100%;
+  }
   /* set width for section and aside */
   section, aside {
     width: 100%;
@@ -116,40 +141,39 @@ h1 {
 /* do the following if using screen with width of 48rem */
 @media only screen and (min-width: 48em) {
   /* set body width */
-  body {
+  .center-div {
     width: 45rem;
   }
   /* set aside content width and margin */
-  aside .content {
-      width: 12rem;
-      margin-right: 3rem;
+  aside {
+      width: 18rem;
+      margin-right: 2rem;
   }
-  /* set section content width */
-  section .content {
-    width: 30rem;
+  // /* set section content width */
+  section {
+    width: 25rem;
   }
-  /*set input width */
+  // /*set input width */
   input.listName {
-    width: 5rem;
+    width: 9rem;
   }
 }
 /* do the following if using screen with width of 75rem */
 @media only screen and (min-width: 75em) {
-  /* set body width */
-  body {
-    width: 60rem;
-  }
   /* set aside content width and margin */
-  aside .content {
-    width: 15rem;
-    margin-right: 5rem;
+  aside {
+    width: 28rem;
+    margin-right: 2rem;
   }
   /* set section content width */
-  section .content {
+  section {
     width: 40rem;
   }
   /*set input width */
   input.listName {
     width: 7rem;
+  }
+  .center-div {
+    width: 70rem;
   }
 }
