@@ -5,10 +5,10 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: #261a0d;
 }
 /* set background image for the body */
 body {
+  background-color: white;
   overflow: auto;
   padding: 0;
   margin: auto;
@@ -18,6 +18,9 @@ body {
 h1,
 h3 {
   font-family: 'Bangers', 'sans-serif';
+}
+h1 {
+  color: #F44336;
 }
 /* set font size for h1 */
 h1 {
@@ -33,11 +36,10 @@ h1 {
 }
 /* set color, radius, border and opacity of class */
 .content-background {
-  background-color: #dec0a0;
+  background-color: #37C117;
   border-bottom-right-radius: 25px;
   border-top-left-radius: 25px;
   border: 1px solid black;
-  opacity: 0.9;
   filter: alpha(opacity=60);
 }
 /* set margin and padding for content */
@@ -70,15 +72,18 @@ h1 {
 }
 .listNames .error,
 .listItems .error {
-  border-color: #ff0000;
+  border-color: #F44336;
 }
 /* align text center for title, listitemstitle, and form */
 .center-text {
   text-align: center;
 }
+.center-div {
+  margin: 0 auto;
+}
 /*set font awesome icon to red and float right */
 .fa-times {
-  color: #ff0000;
+  color: #F44336;
   float: right;
 }
 /* highlight selected field */
@@ -88,7 +93,7 @@ h1 {
 /* hide element taking up space and set text to red */
 .storageErrorStatus {
   visibility: hidden;
-  color: #ff0000;
+  color: #F44336;
 }
 /* hide element without taking space */
 .hidden {
@@ -96,6 +101,9 @@ h1 {
 }
 /* do the following if using screen with max of 48rem */
 @media only screen and (max-width: 48em) {
+  .center-div {
+    width: 100%;
+  }
   /* set width for section and aside */
   section,
   aside {
@@ -113,41 +121,38 @@ h1 {
 /* do the following if using screen with width of 48rem */
 @media only screen and (min-width: 48em) {
   /* set body width */
-  body {
+  .center-div {
     width: 45rem;
   }
   /* set aside content width and margin */
-  aside .content {
-    width: 12rem;
-    margin-right: 3rem;
+  aside {
+    width: 18rem;
+    margin-right: 2rem;
   }
-  /* set section content width */
-  section .content {
-    width: 30rem;
+  section {
+    width: 25rem;
   }
-  /*set input width */
   input.listName {
-    width: 5rem;
+    width: 9rem;
   }
 }
 /* do the following if using screen with width of 75rem */
 @media only screen and (min-width: 75em) {
-  /* set body width */
-  body {
-    width: 60rem;
-  }
   /* set aside content width and margin */
-  aside .content {
-    width: 15rem;
-    margin-right: 5rem;
+  aside {
+    width: 28rem;
+    margin-right: 2rem;
   }
   /* set section content width */
-  section .content {
+  section {
     width: 40rem;
   }
   /*set input width */
   input.listName {
     width: 7rem;
   }
+  .center-div {
+    width: 70rem;
+  }
 }
-/*# sourceMappingURL=shopping-list-app.1.0.5.css.map */
+/*# sourceMappingURL=shopping-list-app.1.0.6.css.map */
