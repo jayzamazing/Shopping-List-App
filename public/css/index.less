@@ -1,54 +1,43 @@
 /* colors used throughout the page */
-@dark-brown: hsl(31, 49%, 10%);
-@light-brown: lighten(@dark-brown, 50%);
-@near-black: hsl(220, 6%, 10%);
-@red: hsl(0, 100%, 50%);
-@lighter-brown: lighten(@light-brown, 15%);
-
-// @red: #F44336;
-@deepred: #A71E14;
-@lightred: #FF5E52;
-@yellow: #E2F64F;
-@lightblue: #176BC1;
-@darkblue: #1D61A7;
-// @green: #04A748;
-// @lightgreen: #36F485;
-
-@red: #F44336;
-@orange: #C15417;
-@brown: #8E6C58;
-@lightgreen: #74F585;
-@green: #37C117;
+@red: #F5403A;
+@blue: #2196F3;
+@green: #A2A60E;
 
 /* set box-sizing, margin, padding, and color for html and body */
 html, body {
   box-sizing: border-box;
   margin:0;
   padding:0;
+  height: 100%;
 }
 /* set background image for the body */
 body {
-  background-color: white;
-  // background-image: url('shopping-center-iot.jpg');
-  // background-size: cover;
-  // height: 45.938rem;
-  // background-position: center bottom;
   overflow: auto;
   padding:0;
   margin: auto;
-  font-family: 'Architects Daughter', 'sans-serif';
-  // background-repeat: no-repeat;
+  font-family: 'Indie Flower', cursive;
+  background: url(lightshopping.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 /* add fornt to h1 and h3 */
 h1, h3 {
-  font-family: 'Bangers', 'sans-serif';
-}
-h1 {
-  color: @red;
+  font-family: 'Fredericka the Great', cursive;
 }
 /* set font size for h1 */
 h1 {
-  font-size: 64px;
+  color: white;
+  font-size: 4em;
+  text-shadow: 2px 2px black;
+}
+h3 {
+  font-size: 2em;
+}
+hr {
+  background-color: @green;
+  height: 1px;
 }
 /* reset components */
 *, *:before, *:after {
@@ -58,11 +47,10 @@ h1 {
 }
 /* set color, radius, border and opacity of class */
 .content-background {
-  background-color: @green;
+  background-color: @blue;
   border-bottom-right-radius: 25px;
   border-top-left-radius: 25px;
   border: 1px solid black;
-  // opacity: 0.9;
   filter: alpha(opacity=60);
 }
 /* set margin and padding for content */
@@ -81,19 +69,23 @@ h1 {
   /* set border, width, height, shadow, and padding for content i */
   i {
     border-radius: 1.25rem;
-    width: 1rem;
-    height: 1rem;
-    box-shadow: 0px 0px 3px @near-black;
-    padding-left: .1rem;
+    width: 2rem;
+    height: 2rem;
+    box-shadow: 0px 0px 3px black;
+    padding-left: .25rem;
+    margin-top: .5rem;
   }
 }
-/* set float for listnames and listitems */
-.listNames, .listItems {
+/* set float for listnames */
+.listNames {
   float: left;
   /* set border color for listnames and listitems error */
   .error {
     border-color: @red;
   }
+}
+.listItems {
+  overflow: hidden;
 }
 /* align text center for title, listitemstitle, and form */
 .center-text {
@@ -101,15 +93,32 @@ h1 {
 }
 .center-div {
   margin: 0 auto;
+  min-height: 100%;
+  margin-bottom: -142px;
+}
+.center-div:after {
+  content: "";
+  display: block;
 }
 /*set font awesome icon to red and float right */
 .fa-times {
-  color: @red;
+  color: black;
   float: right;
 }
 /* highlight selected field */
 .highlight {
-  background-color: @light-brown;
+  background-color: @red;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-right: -5px;
+  margin-left: -5px;
+}
+[type="submit"] {
+  color: white;
+  background-color: #065FA6;
+}
+.cross-out {
+  text-decoration: line-through;
 }
 /* hide element taking up space and set text to red */
 .storageErrorStatus {
@@ -119,6 +128,27 @@ h1 {
 /* hide element without taking space */
 .hidden {
   display: none !important;
+}
+.social {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1em;
+  li {
+      display: inline-block;
+      margin: 5px;
+  }
+}
+.social-footer i, .social-footer p {
+  color: white;
+}
+.social-bottom {
+  max-width: 288px;
+}
+.social-footer, .center-div:after {
+  height: 142px;
+}
+.listItems li, .listNames li, .input {
+  font-size: 2em;
 }
 /* do the following if using screen with max of 48rem */
 @media only screen and (max-width: 48em) {
@@ -135,7 +165,7 @@ h1 {
   }
   /* decrease h1 font size */
   h1 {
-    font-size: 32px;
+    font-size: 3em;
   }
 }
 /* do the following if using screen with width of 48rem */
@@ -171,9 +201,10 @@ h1 {
   }
   /*set input width */
   input.listName {
-    width: 7rem;
+    width: 14rem;
   }
   .center-div {
     width: 70rem;
   }
+
 }
