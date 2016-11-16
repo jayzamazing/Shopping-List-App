@@ -91,7 +91,7 @@
 	        //prevent page default
 	        event.preventDefault();
 	        //get the list name from the input
-	        var name = $('#listName').val();
+	        var name = $('#listName').val().trim();
 	        //show error if input field is empty
 	        if (name === '') {
 	            $('#listName').addClass('error');
@@ -121,7 +121,7 @@
 	        //prevent page reload
 	        event.preventDefault();
 	        //get the value from the input field
-	        var name = $('#itemName').val();
+	        var name = $('#itemName').val().trim();
 	        //show error if input field is empty
 	        if (name === '') {
 	            $('#itemName').addClass('error');
@@ -196,7 +196,7 @@
 	                checked[$(this).index()] = 'checked';
 	            }
 	            //highlight item and add to list of checked on local storage
-	            $(this).toggleClass('highlight', this.checked);
+	            $(this).toggleClass('cross-out', this.checked);
 	            setListItem($('.listNames ul').find("input:checked").val().concat('.Checked'), checked);
 	        }
 	    });
@@ -216,12 +216,22 @@
 	        if ($(event.target).prev().find('input').prop('checked') && $(event.target).prev().find('input').is(':radio') && $(event.target).parent().prev().find('input').length) {
 	            //set previous to be checked and highlighted
 	            $(event.target).parent().prev().find('input').prop('checked', true);
-	            $(event.target).parent().prev().toggleClass('highlight', event.target.checked);
+	            //ensure that checked gets crossed out and radio gets highlighted
+	            if ($(event.target).prev().find('input').prop('checked')) {
+	                $(event.target).parent().prev().toggleClass('cross-out', event.target.checked);
+	            } else {
+	                $(event.target).parent().prev().toggleClass('highlight', event.target.checked);
+	            }
 	            //otherwise if list name, checked, and there is a next list, first element in list
 	        } else if ($(event.target).prev().find('input').prop('checked') && $(event.target).prev().find('input').is(':radio') && $(event.target).parent().next().find('input').length) {
 	            //set previous to be checked and highlighted
 	            $(event.target).parent().next().find('input').prop('checked', true);
-	            $(event.target).parent().next().toggleClass('highlight', event.target.checked);
+	            //ensure that checked gets crossed out and radio gets highlighted
+	            if ($(event.target).prev().find('input').prop('checked')) {
+	                $(event.target).parent().prev().toggleClass('cross-out', event.target.checked);
+	            } else {
+	                $(event.target).parent().prev().toggleClass('highlight', event.target.checked);
+	            }
 	        }
 	        $(event.target).parent().remove();
 	        //delete the list items
@@ -407,7 +417,7 @@
 	                        var listObj = $('.listItems li')[i];
 	                        var listObj2 = $('.listItems li input')[i];
 	                        //add hightlight to list item and checked to input field
-	                        listObj.className += ' highlight';
+	                        listObj.className += ' cross-out';
 	                        listObj2.checked = true;
 	                    }
 	                });
@@ -10488,4 +10498,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=shopping-list-app.1.0.2.js.map
+//# sourceMappingURL=shopping-list-app.2.0.0.js.map

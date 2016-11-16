@@ -5,28 +5,37 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: #261a0d;
+  height: 100%;
 }
 /* set background image for the body */
 body {
-  background-image: url('shopping-center-iot.jpg');
-  background-size: cover;
-  height: 45.938rem;
-  background-position: center bottom;
   overflow: auto;
   padding: 0;
   margin: auto;
-  font-family: 'Architects Daughter', 'sans-serif';
-  background-repeat: no-repeat;
+  font-family: 'Indie Flower', cursive;
+  background: url(lightshopping.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 /* add fornt to h1 and h3 */
 h1,
 h3 {
-  font-family: 'Bangers', 'sans-serif';
+  font-family: 'Fredericka the Great', cursive;
 }
 /* set font size for h1 */
 h1 {
-  font-size: 64px;
+  color: white;
+  font-size: 4em;
+  text-shadow: 2px 2px black;
+}
+h3 {
+  font-size: 2em;
+}
+hr {
+  background-color: #A2A60E;
+  height: 1px;
 }
 /* reset components */
 *,
@@ -38,11 +47,10 @@ h1 {
 }
 /* set color, radius, border and opacity of class */
 .content-background {
-  background-color: #dec0a0;
+  background-color: #2196F3;
   border-bottom-right-radius: 25px;
   border-top-left-radius: 25px;
   border: 1px solid black;
-  opacity: 0.9;
   filter: alpha(opacity=60);
 }
 /* set margin and padding for content */
@@ -62,45 +70,95 @@ h1 {
 }
 .content i {
   border-radius: 1.25rem;
-  width: 1rem;
-  height: 1rem;
-  box-shadow: 0px 0px 3px #18191b;
-  padding-left: .1rem;
+  width: 2rem;
+  height: 2rem;
+  box-shadow: 0px 0px 3px black;
+  padding-left: .25rem;
+  margin-top: .5rem;
 }
-/* set float for listnames and listitems */
-.listNames,
-.listItems {
+/* set float for listnames */
+.listNames {
   float: left;
   /* set border color for listnames and listitems error */
 }
-.listNames .error,
-.listItems .error {
-  border-color: #ff0000;
+.listNames .error {
+  border-color: #F5403A;
+}
+.listItems {
+  overflow: hidden;
 }
 /* align text center for title, listitemstitle, and form */
 .center-text {
   text-align: center;
 }
+.center-div {
+  margin: 0 auto;
+  min-height: 100%;
+  margin-bottom: -142px;
+}
+.center-div:after {
+  content: "";
+  display: block;
+}
 /*set font awesome icon to red and float right */
 .fa-times {
-  color: #ff0000;
+  color: black;
   float: right;
 }
 /* highlight selected field */
 .highlight {
-  background-color: #cb9b67;
+  background-color: #F5403A;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-right: -5px;
+  margin-left: -5px;
+}
+[type="submit"] {
+  color: white;
+  background-color: #065FA6;
+}
+.cross-out {
+  text-decoration: line-through;
 }
 /* hide element taking up space and set text to red */
 .storageErrorStatus {
   visibility: hidden;
-  color: #ff0000;
+  color: #F5403A;
 }
 /* hide element without taking space */
 .hidden {
   display: none !important;
 }
+.social {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1em;
+}
+.social li {
+  display: inline-block;
+  margin: 5px;
+}
+.social-footer i,
+.social-footer p {
+  color: white;
+}
+.social-bottom {
+  max-width: 288px;
+}
+.social-footer,
+.center-div:after {
+  height: 142px;
+}
+.listItems li,
+.listNames li,
+.input {
+  font-size: 2em;
+}
 /* do the following if using screen with max of 48rem */
 @media only screen and (max-width: 48em) {
+  .center-div {
+    width: 100%;
+  }
   /* set width for section and aside */
   section,
   aside {
@@ -112,47 +170,44 @@ h1 {
   }
   /* decrease h1 font size */
   h1 {
-    font-size: 32px;
+    font-size: 3em;
   }
 }
 /* do the following if using screen with width of 48rem */
 @media only screen and (min-width: 48em) {
   /* set body width */
-  body {
+  .center-div {
     width: 45rem;
   }
   /* set aside content width and margin */
-  aside .content {
-    width: 12rem;
-    margin-right: 3rem;
+  aside {
+    width: 18rem;
+    margin-right: 2rem;
   }
-  /* set section content width */
-  section .content {
-    width: 30rem;
+  section {
+    width: 25rem;
   }
-  /*set input width */
   input.listName {
-    width: 5rem;
+    width: 9rem;
   }
 }
 /* do the following if using screen with width of 75rem */
 @media only screen and (min-width: 75em) {
-  /* set body width */
-  body {
-    width: 60rem;
-  }
   /* set aside content width and margin */
-  aside .content {
-    width: 15rem;
-    margin-right: 5rem;
+  aside {
+    width: 28rem;
+    margin-right: 2rem;
   }
   /* set section content width */
-  section .content {
+  section {
     width: 40rem;
   }
   /*set input width */
   input.listName {
-    width: 7rem;
+    width: 14rem;
+  }
+  .center-div {
+    width: 70rem;
   }
 }
-/*# sourceMappingURL=shopping-list-app.1.0.2.css.map */
+/*# sourceMappingURL=shopping-list-app.2.0.0.css.map */
