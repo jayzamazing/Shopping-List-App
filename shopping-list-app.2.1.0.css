@@ -47,11 +47,10 @@ hr {
 }
 /* set color, radius, border and opacity of class */
 .content-background {
-  background-color: #2196F3;
+  background-color: #eff8f2;
+  border: 6px solid #cdcdcd;
   border-bottom-right-radius: 25px;
   border-top-left-radius: 25px;
-  border: 1px solid black;
-  filter: alpha(opacity=60);
 }
 /* set margin and padding for content */
 .content {
@@ -116,6 +115,7 @@ hr {
 [type="submit"] {
   color: white;
   background-color: #065FA6;
+  border: 0;
 }
 .cross-out {
   text-decoration: line-through;
@@ -210,4 +210,4 @@ hr {
     width: 70rem;
   }
 }
-/*# sourceMappingURL=shopping-list-app.2.0.0.css.map */
+/*# sourceMappingURL=shopping-list-app.2.1.0.css.map */
