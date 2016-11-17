@@ -15,7 +15,8 @@ The initial web and mobile wireframes are shown below:
 ![image](<./github/main page.png>)
 
 ###Prototype
-You can see the application in action at the following link: https://jayzamazing.github.io/Shopping-List-App
+You can see the application in action at the following link:
+http://shoppinglistapp.jayzamazing.com/
 
 ###Technical
 This project uses Html, CSS, Jquery, Javascript, Less, Webpack, and Babel. This app uses LocalStorage to store the data. This app is built using Babel, Uglify-js, and Webpack.
