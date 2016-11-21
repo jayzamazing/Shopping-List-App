@@ -10498,4 +10498,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=shopping-list-app.2.1.0.js.map
+//# sourceMappingURL=shopping-list-app.2.2.0.js.map
